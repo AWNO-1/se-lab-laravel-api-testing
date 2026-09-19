@@ -1,0 +1,110 @@
+### Variables
+@baseUrl = http://127.0.0.1:8000/api
+@token = 1|your_auth_token_here
+@taskId = 1
+@categoryId = 1
+
+### 1. Register
+POST {{baseUrl}}/register
+Accept: application/json
+Content-Type: application/json
+
+{
+  "name": "Ahmed Dev",
+  "email": "ahmed@example.com",
+  "password": "password123"
+}
+
+### 2. Login
+POST {{baseUrl}}/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "ahmed@example.com",
+  "password": "password123"
+}
+
+### 3. Get Authenticated User Profile
+GET {{baseUrl}}/me
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### 4. List Categories
+GET {{baseUrl}}/categories
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### 5. Create Category
+POST {{baseUrl}}/categories
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Software Engineering"
+}
+
+### 6. List Tasks (Paginated)
+GET {{baseUrl}}/tasks
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### 7. Filter Tasks by Category
+GET {{baseUrl}}/tasks?category_id={{categoryId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### 8. Filter Tasks by Status
+GET {{baseUrl}}/tasks?status=pending
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### 9. Search Tasks
+GET {{baseUrl}}/tasks?search=API
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### 10. Create Task
+POST {{baseUrl}}/tasks
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Build Laravel REST API",
+  "description": "Follow best practices with Form Requests and API Resources",
+  "status": "pending",
+  "due_date": "2026-09-30",
+  "category_id": 1
+}
+
+### 11. View Task
+GET {{baseUrl}}/tasks/{{taskId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### 12. Update Task
+PATCH {{baseUrl}}/tasks/{{taskId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "status": "in_progress"
+}
+
+### 13. Complete Task (Bonus Endpoint)
+PATCH {{baseUrl}}/tasks/{{taskId}}/complete
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### 14. Delete Task
+DELETE {{baseUrl}}/tasks/{{taskId}}
+Accept: application/json
+Authorization: Bearer {{token}}
+
+### 15. Logout
+POST {{baseUrl}}/logout
+Accept: application/json
+Authorization: Bearer {{token}}
